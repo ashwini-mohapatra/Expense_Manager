@@ -208,7 +208,92 @@ private FloatingActionButton floatingActionButton;
 
     }
     public void updatedata(){
+        AlertDialog.Builder mydialog=new AlertDialog.Builder(HomePageActivity.this);
+
+        LayoutInflater inflater=LayoutInflater.from(HomePageActivity.this);
+
+        View mView=inflater.inflate(R.layout.update_data,null);
+
+        final AlertDialog dialog=mydialog.create();
+
+        dialog.setView(mView);
+
+        final EditText edt_Name=mView.findViewById(R.id.itemname1);
+        final EditText edt_Cost=mView.findViewById(R.id.totalamount1);
+        final Spinner edt_Type=mView.findViewById(R.id.spinner11);
+
+        edt_Name.setText(itemname);
+        edt_Name.setSelection(itemname.length());
+
+        edt_Cost.setText(String.valueOf(cost));
+        edt_Cost.setSelection(String.valueOf(cost).length());
+
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        edt_Type.setAdapter(adapter);
+        if(type.equals("Undetermined")){
+            edt_Type.setSelection(0);
+        }else if(type.equals("Saving")){
+            edt_Type.setSelection(2);
+        }else if(type.equals("Expense")){
+            edt_Type.setSelection(1);
+        }else if(type.equals("Salary")){
+            edt_Type.setSelection(3);
         }
+
+
+        Button btnUpdate=mView.findViewById(R.id.update_button);
+        Button btnDelete=mView.findViewById(R.id.delete_button);
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                itemname=edt_Name.getText().toString().trim();
+
+                String mAmmount=String.valueOf(cost);
+
+                mAmmount=edt_Cost.getText().toString().trim();
+
+                type=edt_Type.getSelectedItem().toString();
+
+                int intammount=Integer.parseInt(mAmmount);
+
+                String date=DateFormat.getDateInstance().format(new Date());
+
+                if(type.equals("---")){
+                    type="Undetermined";
+                }
+                Data data=new Data(post_key,itemname,type,intammount,date);
+
+                mDatabase.child(post_key).setValue(data);
+
+
+                dialog.dismiss();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mDatabase.child(post_key).removeValue();
+
+                dialog.dismiss();
+
+            }
+        });
+
+
+
+        dialog.show();
+
+
+
+
+
+    }
     public void logout(View view){
         mAuth.signOut();
         startActivity(new Intent(this,MainActivity.class));
