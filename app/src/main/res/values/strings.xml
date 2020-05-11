@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Expense Manager</string>
+    <string name="login">Login</string>
+    <string name="email_id">Email-Id</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="registration">Registration</string>
+    <string name="register">Register</string>
+    <string name="already">Already have an account? Sign In</string>
+    <string name="dont">Don\'t have an account? Sign Up</string>
+    <string name="registration_success">Registration Successful</string>
+    <string name="registration_unsuccess">Registration Unsuccessful</string>
+    <string name="login_success">Login Successful</string>
+    <string name="login_unsuccess">Login Unsuccessful</string>
+    <string name="update_in_account">Update in Account</string>
+    <string name="delete_from_account">Delete from Account</string>
+    <string name="amount">Amount</string>
+    <string name="total_amount">Total Amount:</string>
+</resources>
