@@ -49,7 +49,7 @@ private FloatingActionButton floatingActionButton;
     int totalamount1;
     private TextView giid;
     private RecyclerView recyclerView;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter,adapter1;
     private String type,itemname,post_key;
     private int cost;
 
@@ -57,6 +57,7 @@ private FloatingActionButton floatingActionButton;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         toolbar=findViewById(R.id.hometoolbar);
         floatingActionButton=findViewById(R.id.floatingActionButton);
         recyclerView=findViewById(R.id.recycle);
@@ -106,7 +107,6 @@ private FloatingActionButton floatingActionButton;
 
             }
         });
-
     }
     public void inputdatum(View view){
         AlertDialog.Builder mDialog = new AlertDialog.Builder(HomePageActivity.this);
@@ -298,4 +298,5 @@ private FloatingActionButton floatingActionButton;
         mAuth.signOut();
         startActivity(new Intent(this,MainActivity.class));
     }
+
 }
